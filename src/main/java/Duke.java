@@ -1,10 +1,24 @@
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+
+        String divider = "____________________________________________________________";
+
+        String logo = """
+                ███▄▄▄▄   ▄██   ▄   ▀████    ▐████▀\s
+                ███▀▀▀██▄ ███   ██▄   ███▌   ████▀ \s
+                ███   ███ ███▄▄▄███    ███  ▐███   \s
+                ███   ███ ▀▀▀▀▀▀███    ▀███▄███▀   \s
+                ███   ███ ▄██   ███    ████▀██▄    \s
+                ███   ███ ███   ███   ▐███  ▀███   \s
+                ███   ███ ███   ███  ▄███     ███▄ \s
+                 ▀█   █▀   ▀█████▀  ████       ███▄\s
+                                                   \s""";
+        System.out.println("\n" + logo + "\n");
+        System.out.println(divider);
+        System.out.println("Hello. I am Nyx.\n");
+        System.out.println("What can I do for you?\n");
+        System.out.println(divider);
+        System.out.println("Goodbye. Exiting Nyx.\n" + divider);
+
     }
 }
