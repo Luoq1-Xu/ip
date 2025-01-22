@@ -1,11 +1,14 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Nyx {
     public static void main(String[] args) {
 
+
+        HashMap<String, Task> tasks = new HashMap<>();
+
         Scanner scan = new Scanner(System.in);
         String divider = "____________________________________________________________";
-
         String logo = """
                 ███▄▄▄▄   ▄██   ▄   ▀████    ▐████▀\s
                 ███▀▀▀██▄ ███   ██▄   ███▌   ████▀ \s
@@ -26,7 +29,22 @@ public class Nyx {
                 System.out.println("Goodbye. Exiting Nyx.\n" + divider);
                 break;
             }
-            System.out.println(input);
+            if (input.equals("list")) {
+                int counter = 1;
+                for (Task task : tasks.values()) {
+                    System.out.println(counter + ". " + task);
+                    counter++;
+                }
+                System.out.println(divider);
+            } else {
+                if (!tasks.containsKey(input)) {
+                    Task newTask = new Task(input);
+                    tasks.put(input, newTask);
+                    System.out.println("Task created: " + newTask + "\n" + divider);
+                } else {
+                    System.out.println("Task already exists: " + input + "\n" + divider);
+                }
+            }
         }
 
 
