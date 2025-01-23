@@ -19,8 +19,6 @@ public class Task {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.id);
-        sb.append(". ");
         if (this.completed) {
             sb.append("[X]");
         } else {
