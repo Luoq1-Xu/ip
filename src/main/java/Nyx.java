@@ -43,6 +43,7 @@ public class Nyx {
             } else {
                 // Error occurred, print error message
                 System.out.println(result);
+                System.out.println(divider);
             }
         }
     }
@@ -92,8 +93,15 @@ public class Nyx {
             } catch (NyxException e) {
                 return e.getMessage();
             }
+        } else if (input.startsWith("delete ")) {
+            try {
+                deleteTask(input);
+                return "success";
+            } catch (NyxException e) {
+                return e.getMessage();
+            }
         }
-        return "Invalid command.";
+        return "Unrecognised command.";
     }
 
     public static void handleTodo(String rawInput) throws NyxException {
@@ -172,6 +180,25 @@ public class Nyx {
             }
         } catch (Exception e) {
             throw new InvalidUsageException("Wrong usage. Correct usage: mark [task id]");
+        }
+    }
+
+    public static void deleteTask(String command) throws NyxException {
+        try {
+            String[] splitInput = command.split(" ");
+            int taskIndex = Integer.parseInt(splitInput[1]) - 1;
+            if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
+                Task taskToDelete = tasks.get(taskIndex);
+                tasks.remove(taskIndex);
+                System.out.println("Task deleted: " + taskToDelete);
+                System.out.println("There are now " + tasks.size() + " tasks.");
+            } else {
+                System.out.println("Invalid task number.\n");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("bruh");
+            throw new InvalidUsageException("Wrong usage. Correct usage: delete [task id]");
         }
     }
 
