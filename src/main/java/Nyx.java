@@ -1,11 +1,24 @@
 import exceptions.InvalidUsageException;
 import exceptions.NyxException;
+import exceptions.UnknownCommandException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Nyx {
+
+    public enum CommandType {
+        TODO,
+        DEADLINE,
+        EVENT,
+        MARK,
+        UNMARK,
+        DELETE,
+        LIST,
+        BYE,
+        UNKNOWN
+    }
 
     static ArrayList<Task> tasks = new ArrayList<>();
     static HashMap<String, Integer> taskNameToId = new HashMap<>();
@@ -22,6 +35,7 @@ public class Nyx {
                  ▀█   █▀   ▀█████▀  ████       ███▄\s
                                                    \s""";
     static int counter = 1;
+    static boolean isRunning = true;
 
     public static void main(String[] args) {
         System.out.println("\n" + logo + "\n");
@@ -29,80 +43,67 @@ public class Nyx {
         System.out.println("Hello. I am Nyx.\n");
         System.out.println("What can I do for you?\n" + divider);
 
-        while (true) {
+        while (isRunning) {
             String input = scan.nextLine();
-            String result = parseCommand(input);
-            if (result.equals("bye")) {
-                // Exit
-                break;
-            }
-            if (result.equals("success")) {
-                // Successfully executed command
-                System.out.println(divider);
-                continue;
-            } else {
-                // Error occurred, print error message
-                System.out.println(result);
+            CommandType command = getCommandType(input);
+            try {
+                executeCommand(command, input);
+            } catch (NyxException e) {
+                System.out.println(e.getMessage());
+            } finally {
                 System.out.println(divider);
             }
         }
     }
 
-    public static String parseCommand(String input) {
+    public static CommandType getCommandType(String input) {
         if (input.startsWith("todo ")) {
-            try {
-                handleTodo(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
+            return CommandType.TODO;
         } else if (input.startsWith("deadline ")) {
-            try {
-                handleDeadline(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
+            return CommandType.DEADLINE;
         } else if (input.startsWith("event ")) {
-            try {
-                handleEvent(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
+            return CommandType.EVENT;
         } else if (input.equals("list")) {
+            return CommandType.LIST;
+        } else if (input.equals("bye")) {
+            return CommandType.BYE;
+        } else if (input.startsWith("mark ")) {
+            return CommandType.MARK;
+        } else if (input.startsWith("unmark ")) {
+            return CommandType.UNMARK;
+        } else if (input.startsWith("delete ")) {
+            return CommandType.DELETE;
+        } else {
+            return CommandType.UNKNOWN;
+        }
+    }
+
+    public static void executeCommand(CommandType command, String input) throws NyxException {
+        if (command == CommandType.TODO) {
+            handleTodo(input);
+        } else if (command == CommandType.DEADLINE) {
+            handleDeadline(input);
+        } else if (command == CommandType.EVENT) {
+            handleEvent(input);
+        } else if (command == CommandType.LIST) {
             System.out.println("Here is the current list of tasks:");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println((i + 1) + ". " + tasks.get(i));
             }
-            return "success";
-        } else if (input.equals("bye")) {
+        } else if (command == CommandType.BYE) {
+            isRunning = false;
             System.out.println("Goodbye!");
-            return "bye";
-        } else if (input.startsWith("mark ")) {
-            try {
-                mark(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
-        } else if (input.startsWith("unmark ")) {
-            try {
-                unMark(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
-        } else if (input.startsWith("delete ")) {
-            try {
-                deleteTask(input);
-                return "success";
-            } catch (NyxException e) {
-                return e.getMessage();
-            }
+        } else if (command == CommandType.MARK) {
+            mark(input);
+        } else if (command == CommandType.UNMARK) {
+            unMark(input);
+        } else if (command == CommandType.DELETE) {
+            deleteTask(input);
+        } else {
+            throw new UnknownCommandException("Unrecognised command.");
         }
-        return "Unrecognised command.";
     }
+
 
     public static void handleTodo(String rawInput) throws NyxException {
         try {
