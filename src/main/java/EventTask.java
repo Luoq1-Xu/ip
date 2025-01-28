@@ -9,6 +9,15 @@ public class EventTask extends Task {
         this.end = end;
     }
 
+    public String getTaskType() {
+        return "E";
+    }
+
+    @Override
+    public String toSaveFormat() {
+        return super.toSaveFormat() + " | " + start + " | " + end;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " Start: " + this.start + " End: " + this.end;

@@ -2,11 +2,22 @@ import exceptions.InvalidUsageException;
 import exceptions.NyxException;
 import exceptions.UnknownCommandException;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.FileReader;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Nyx {
+
+    private static final Path FILE_PATH = Paths.get("data", "tasks.txt");
 
     public enum CommandType {
         TODO,
@@ -42,6 +53,8 @@ public class Nyx {
         System.out.println(divider);
         System.out.println("Hello. I am Nyx.\n");
         System.out.println("What can I do for you?\n" + divider);
+
+        loadTaskData();
 
         while (isRunning) {
             String input = scan.nextLine();
@@ -79,31 +92,47 @@ public class Nyx {
     }
 
     public static void executeCommand(CommandType command, String input) throws NyxException {
-        if (command == CommandType.TODO) {
-            handleTodo(input);
-        } else if (command == CommandType.DEADLINE) {
-            handleDeadline(input);
-        } else if (command == CommandType.EVENT) {
-            handleEvent(input);
-        } else if (command == CommandType.LIST) {
-            System.out.println("Here is the current list of tasks:");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+        if (command != CommandType.UNKNOWN) {
+            switch (command) {
+            case TODO:
+                handleTodo(input);
+                saveTaskData();
+                break;
+            case DEADLINE:
+                handleDeadline(input);
+                saveTaskData();
+                break;
+            case EVENT:
+                handleEvent(input);
+                saveTaskData();
+                break;
+            case LIST:
+                System.out.println("Here is the current list of tasks:");
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println((i + 1) + ". " + tasks.get(i));
+                }
+                break;
+            case BYE:
+                isRunning = false;
+                System.out.println("Goodbye!");
+                break;
+            case MARK:
+                mark(input);
+                saveTaskData();
+                break;
+            case UNMARK:
+                unMark(input);
+                saveTaskData();
+                break;
+            case DELETE:
+                deleteTask(input);
+                saveTaskData();
+                break;
             }
-        } else if (command == CommandType.BYE) {
-            isRunning = false;
-            System.out.println("Goodbye!");
-        } else if (command == CommandType.MARK) {
-            mark(input);
-        } else if (command == CommandType.UNMARK) {
-            unMark(input);
-        } else if (command == CommandType.DELETE) {
-            deleteTask(input);
         } else {
             throw new UnknownCommandException("Unrecognised command.");
         }
     }
-
 
     public static void handleTodo(String rawInput) throws NyxException {
         try {
@@ -203,4 +232,77 @@ public class Nyx {
         }
     }
 
+    public static void loadTaskData() {
+        try {
+            // Ensure the directories exist
+            if (Files.notExists(FILE_PATH.getParent())) {
+                Files.createDirectories(FILE_PATH.getParent());
+            }
+
+            // Create the file if it doesn't exist
+            if (Files.notExists(FILE_PATH)) {
+                Files.createFile(FILE_PATH);
+                return; // No data to load yet
+            }
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH.toFile()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] splitInput = line.split(" \\| ");
+                    String taskType = splitInput[0];
+                    boolean isDone = splitInput[1].equals("1");
+                    String taskName = splitInput[2];
+                    switch (taskType) {
+                    case "T":
+                        TodoTask todoTask = new TodoTask(taskName, counter);
+                        if (isDone) todoTask.markAsComplete();
+                        tasks.add(todoTask);
+                        taskNameToId.put(taskName, counter);
+                        break;
+                    case "D":
+                        String deadline = splitInput[3];
+                        DeadlineTask deadlineTask = new DeadlineTask(taskName, counter, deadline);
+                        if (isDone) deadlineTask.markAsComplete();
+                        tasks.add(deadlineTask);
+                        taskNameToId.put(taskName, counter);
+                        break;
+                    case "E":
+                        String start = splitInput[3];
+                        String end = splitInput[4];
+                        EventTask eventTask = new EventTask(taskName, counter, start, end);
+                        if (isDone) eventTask.markAsComplete();
+                        tasks.add(eventTask);
+                        taskNameToId.put(taskName, counter);
+                        break;
+                    default:
+                        // Ignore malformed lines
+                        // To ensure counter does not increment on invalid line
+                        counter -= 1;
+                        break;
+                    }
+                    counter++;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void saveTaskData() {
+        try {
+            // Ensure the directories exist
+            if (Files.notExists(FILE_PATH.getParent())) {
+                Files.createDirectories(FILE_PATH.getParent());
+            }
+
+            // Create or overwrite file
+            try (FileWriter fileWriter = new FileWriter(FILE_PATH.toFile())) {
+                for (Task task : tasks) {
+                    fileWriter.write(task.toSaveFormat() + System.lineSeparator());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

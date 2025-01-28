@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private final String name;
     private final int id;
     private boolean completed = false;
@@ -14,6 +14,20 @@ public class Task {
 
     public void markAsIncomplete() {
         this.completed = false;
+    }
+
+    public abstract String getTaskType();
+
+    public int getCompletedStatus() {
+        return completed ? 1 : 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String toSaveFormat() {
+        return this.getTaskType() + " | " + this.getCompletedStatus() + " | " + this.getName();
     }
 
     @Override
