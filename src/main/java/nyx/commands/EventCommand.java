@@ -14,6 +14,7 @@ public class EventCommand extends Command {
     private final String command;
 
     public EventCommand(String input) {
+        super();
         this.command = input;
     }
 

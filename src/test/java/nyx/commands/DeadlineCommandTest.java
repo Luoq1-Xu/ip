@@ -36,7 +36,7 @@ public class DeadlineCommandTest {
     }
 
     @Test
-    public void testExecute_validDeadline() {
+    public void testExecute_validDeadline_taskCreated() {
         String input = "deadline submit report -by 2025-02-19";
         DeadlineCommand command = new DeadlineCommand(input);
 
@@ -48,7 +48,7 @@ public class DeadlineCommandTest {
     }
 
     @Test
-    public void testExecute_invalidUsage_noByDelimiter() {
+    public void testExecute_noByDelimiter_exceptionThrown() {
         String input = "deadline submit report 2025-02-19"; // Missing " -by "
         DeadlineCommand command = new DeadlineCommand(input);
 
@@ -60,7 +60,7 @@ public class DeadlineCommandTest {
     }
 
     @Test
-    public void testExecute_malformedDate() {
+    public void testExecute_malformedDate_exceptionThrown() {
         String input = "deadline submit report -by 19-02-2025"; // Wrong date format
         DeadlineCommand command = new DeadlineCommand(input);
 

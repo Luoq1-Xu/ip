@@ -12,6 +12,7 @@ public class TodoCommand extends Command {
     private final String command;
 
     public TodoCommand(String input) {
+        super();
         this.command = input;
     }
 
