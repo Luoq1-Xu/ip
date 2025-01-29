@@ -68,5 +68,9 @@ public class TaskList {
         }
     }
 
+    public int getTaskCount() {
+        return tasks.size();
+    }
+
 
 }
