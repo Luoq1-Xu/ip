@@ -9,14 +9,30 @@ import nyx.TaskList;
 import nyx.Ui;
 import nyx.tasks.EventTask;
 
+/**
+ * Represents a command to add an event task.
+ */
 public class EventCommand extends Command {
 
     private final String command;
 
+    /**
+     * Constructs a new EventCommand instance with the specified input command.
+     *
+     * @param input The input command string.
+     */
     public EventCommand(String input) {
         this.command = input;
     }
 
+    /**
+     * Executes the EventCommand, adding an event task to the task list.
+     *
+     * @param taskList The task list.
+     * @param storage  The storage handler.
+     * @param ui       The user interface handler.
+     * @throws NyxException If an error occurs during execution.
+     */
     public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             EventTask newTask = getEventTask();
@@ -28,6 +44,11 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * Parses the input command to create an EventTask.
+     *
+     * @return The created EventTask.
+     */
     private EventTask getEventTask() {
         String args = this.command.substring(6);
         String[] parts = args.split(" -start | -end ");
