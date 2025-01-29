@@ -16,9 +16,18 @@ import nyx.tasks.EventTask;
 import nyx.tasks.Task;
 import nyx.tasks.TodoTask;
 
+/**
+ * The Storage class handles loading and saving task data to and from a file.
+ */
 public class Storage {
     private static final Path FILE_PATH = Paths.get("data", "tasks.txt");
 
+    /**
+     * Loads task data from the file.
+     * If the file or directories do not exist, they are created.
+     *
+     * @return An ArrayList of tasks loaded from the file.
+     */
     public ArrayList<Task> loadTaskData() {
         try {
             ArrayList<Task> tasks = new ArrayList<>();
@@ -82,6 +91,12 @@ public class Storage {
         return new ArrayList<>();
     }
 
+    /**
+     * Saves task data to the file.
+     * If the directory and necessary file do not exist, they are created.
+     *
+     * @param toSave The string representation of the tasks to save.
+     */
     public void saveTaskData(String toSave) {
         try {
             // Ensure the directories exist
@@ -98,7 +113,13 @@ public class Storage {
         }
     }
 
-    // Helper method to normalize the date string
+    /**
+     * Helper method to normalize the date string.
+     * Ensures the day part of the date is always two digits.
+     *
+     * @param dateString The date string to normalize.
+     * @return The normalized date string.
+     */
     private static String normalizeDateString(String dateString) {
         String[] parts = dateString.split(" ");
         if (parts[1].length() == 1) {
@@ -106,5 +127,4 @@ public class Storage {
         }
         return String.join(" ", parts);
     }
-
 }

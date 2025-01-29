@@ -11,8 +11,14 @@ import nyx.commands.TodoCommand;
 import nyx.commands.UnknownCommand;
 import nyx.commands.UnmarkCommand;
 
+/**
+ * The Parser class is responsible for parsing user input and returning the appropriate command.
+ */
 public class Parser {
 
+    /**
+     * Enum representing the different types of commands.
+     */
     private enum CommandType {
         TODO,
         DEADLINE,
@@ -26,6 +32,12 @@ public class Parser {
         UNKNOWN
     }
 
+    /**
+     * Parses the user input and returns the corresponding command.
+     *
+     * @param input The user input string.
+     * @return The command corresponding to the user input.
+     */
     public static Command parse(String input) {
         if (input.startsWith("todo ")) {
             return new TodoCommand(input);
@@ -47,5 +59,4 @@ public class Parser {
             return new UnknownCommand();
         }
     }
-
 }
