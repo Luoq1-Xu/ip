@@ -47,6 +47,10 @@ Here is the current list of tasks:
 3. [E][ ] rofl Start: Mar 12 2025 End: May 17 2025
 
 ____________________________________________________________
+Here are the matching tasks in your list:
+[D][ ] breh Deadline: 2005-12-05
+
+____________________________________________________________
 Task deleted: [T][ ] bruh
 There are currently 2 tasks.
 ____________________________________________________________

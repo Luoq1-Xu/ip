@@ -118,4 +118,23 @@ public class TaskList {
     public int getTaskCount() {
         return tasks.size();
     }
+
+    public void findMatchingTasks(String search, Ui ui) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:\n");
+        int matchingTasks = 0;
+        for (Task task : tasks) {
+            String taskString = task.toString();
+            if (taskString.contains(search)) {
+                matchingTasks++;
+                sb.append(taskString).append("\n");
+            }
+        }
+        if (matchingTasks == 0) {
+            ui.displayString("No matching tasks found.");
+            return;
+        }
+        ui.displayString(sb.toString());
+    }
+
 }
