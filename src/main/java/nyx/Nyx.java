@@ -1,4 +1,8 @@
-import exceptions.NyxException;
+package nyx;
+
+import nyx.commands.ByeCommand;
+import nyx.commands.Command;
+import nyx.exceptions.NyxException;
 
 public class Nyx {
 

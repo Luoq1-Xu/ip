@@ -1,3 +1,5 @@
+package nyx.tasks;
+
 public abstract class Task {
     private final String name;
     private boolean completed = false;

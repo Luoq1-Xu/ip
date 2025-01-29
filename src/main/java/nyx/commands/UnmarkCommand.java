@@ -1,10 +1,15 @@
-import exceptions.InvalidUsageException;
-import exceptions.NyxException;
+package nyx.commands;
 
-public class DeleteCommand extends Command {
+import nyx.exceptions.InvalidUsageException;
+import nyx.exceptions.NyxException;
+import nyx.Storage;
+import nyx.TaskList;
+import nyx.Ui;
+
+public class UnmarkCommand extends Command {
     private final String command;
 
-    public DeleteCommand(String command) {
+    public UnmarkCommand(String command) {
         super();
         this.command = command;
     }
@@ -13,10 +18,10 @@ public class DeleteCommand extends Command {
         try {
             String[] splitInput = this.command.split(" ");
             int taskIndex = Integer.parseInt(splitInput[1]) - 1;
-            taskList.deleteTask(taskIndex, ui);
+            taskList.markTaskAsIncomplete(taskIndex, ui);
             storage.saveTaskData(taskList.toSaveFormat());
         } catch (Exception e) {
-            throw new InvalidUsageException("Wrong usage. Correct usage: delete [task id]");
+            throw new InvalidUsageException("Wrong usage. Correct usage: unmark [task id]");
         }
     }
 }

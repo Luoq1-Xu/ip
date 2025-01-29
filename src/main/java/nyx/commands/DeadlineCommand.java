@@ -1,7 +1,13 @@
+package nyx.commands;
+
 import java.time.LocalDate;
 
-import exceptions.InvalidUsageException;
-import exceptions.NyxException;
+import nyx.exceptions.InvalidUsageException;
+import nyx.exceptions.NyxException;
+import nyx.Storage;
+import nyx.TaskList;
+import nyx.Ui;
+import nyx.tasks.DeadlineTask;
 
 public class DeadlineCommand extends Command{
 
