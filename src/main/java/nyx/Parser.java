@@ -10,6 +10,7 @@ import nyx.commands.MarkCommand;
 import nyx.commands.TodoCommand;
 import nyx.commands.UnknownCommand;
 import nyx.commands.UnmarkCommand;
+import nyx.commands.FindCommand;
 
 public class Parser {
 
@@ -43,6 +44,8 @@ public class Parser {
             return new UnmarkCommand(input);
         } else if (input.startsWith("delete ")) {
             return new DeleteCommand(input);
+        } else if (input.startsWith("find ")) {
+            return new FindCommand(input);
         } else {
             return new UnknownCommand();
         }

@@ -19,8 +19,8 @@ then
     exit 1
 fi
 
-# run the program, feed nyx.commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Nyx < input.txt > ACTUAL.TXT
+# run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
+java -classpath ../bin nyx.Nyx < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
