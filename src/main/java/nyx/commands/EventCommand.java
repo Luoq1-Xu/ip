@@ -22,6 +22,7 @@ public class EventCommand extends Command {
      * @param input The input command string.
      */
     public EventCommand(String input) {
+        super();
         this.command = input;
     }
 

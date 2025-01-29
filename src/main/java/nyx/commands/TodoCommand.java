@@ -20,6 +20,7 @@ public class TodoCommand extends Command {
      * @param input The input command string.
      */
     public TodoCommand(String input) {
+        super();
         this.command = input;
     }
 
