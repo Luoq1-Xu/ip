@@ -1,8 +1,11 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class DeadlineTask extends Task {
 
-    private final String deadline;
+    private final LocalDate deadline;
 
-    public DeadlineTask(String name, int id, String deadline) {
+    public DeadlineTask(String name, int id, LocalDate deadline) {
         super(name, id);
         this.deadline = deadline;
     }
@@ -13,7 +16,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toSaveFormat() {
-        return super.toSaveFormat() + " | " + deadline;
+        return super.toSaveFormat() + " | " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override
