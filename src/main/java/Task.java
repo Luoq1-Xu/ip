@@ -1,11 +1,9 @@
 public abstract class Task {
     private final String name;
-    private final int id;
     private boolean completed = false;
 
-    public Task(String name, int id) {
+    public Task(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public void markAsComplete() {

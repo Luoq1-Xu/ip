@@ -6,8 +6,8 @@ public class EventTask extends Task {
     private final LocalDate start;
     private final LocalDate end;
 
-    public EventTask(String name, int id, LocalDate start, LocalDate end) {
-        super(name, id);
+    public EventTask(String name, LocalDate start, LocalDate end) {
+        super(name);
         this.start = start;
         this.end = end;
     }
