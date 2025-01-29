@@ -1,3 +1,5 @@
+package nyx;
+
 import java.util.Scanner;
 
 public class Ui {

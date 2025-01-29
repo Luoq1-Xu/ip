@@ -1,9 +1,15 @@
+package nyx.commands;
+
 import java.time.LocalDate;
 
-import exceptions.InvalidUsageException;
-import exceptions.NyxException;
+import nyx.exceptions.InvalidUsageException;
+import nyx.exceptions.NyxException;
+import nyx.Storage;
+import nyx.TaskList;
+import nyx.Ui;
+import nyx.tasks.EventTask;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     private final String command;
 
