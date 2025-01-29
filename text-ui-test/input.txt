@@ -1,10 +1,15 @@
-todo borrow books
-deadline bruh -by Sunday 2359
-list
+todo bruh
 mark 1
-list
-event roflmao -start 2025 -end 2026
-list
+unmark 1
+deadline breh -by 2005-12-05
+mark 2
+unmark 2
+event rofl -start 2025-03-12 -end 2025-05-17
 mark 3
+unmark 3
+list
+delete 1
+delete 1
+delete 1
 list
 bye

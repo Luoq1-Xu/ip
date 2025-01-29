@@ -1,54 +1,63 @@
 
-███▄▄▄▄   ▄██   ▄   ▀████    ▐████▀ 
-███▀▀▀██▄ ███   ██▄   ███▌   ████▀  
-███   ███ ███▄▄▄███    ███  ▐███    
-███   ███ ▀▀▀▀▀▀███    ▀███▄███▀    
-███   ███ ▄██   ███    ████▀██▄     
-███   ███ ███   ███   ▐███  ▀███    
-███   ███ ███   ███  ▄███     ███▄  
- ▀█   █▀   ▀█████▀  ████       ███▄ 
-                                    
+ ███▄▄▄▄   ▄██   ▄   ▀████    ▐████▀
+ ███▀▀▀██▄ ███   ██▄   ███▌   ████▀
+ ███   ███ ███▄▄▄███    ███  ▐███
+ ███   ███ ▀▀▀▀▀▀███    ▀███▄███▀
+ ███   ███ ▄██   ███    ████▀██▄
+ ███   ███ ███   ███   ▐███  ▀███
+ ███   ███ ███   ███  ▄███     ███▄
+  ▀█   █▀   ▀█████▀  ████       ███▄
+
 
 ____________________________________________________________
 Hello. I am Nyx.
 
 What can I do for you?
 ____________________________________________________________
-Task created: [T][ ] borrow books
-
+Task created: [T][ ] bruh
 There are currently 1 tasks.
 ____________________________________________________________
-Task created: [D][ ] bruh Deadline: Sunday 2359
+Task marked as complete: [T][X] bruh
 
+____________________________________________________________
+Task marked as incomplete: [T][ ] bruh
+
+____________________________________________________________
+Task created: [D][ ] breh Deadline: 2005-12-05
 There are currently 2 tasks.
 ____________________________________________________________
-Here is the current list of tasks:
-1. [T][ ] borrow books
-2. [D][ ] bruh Deadline: Sunday 2359
-____________________________________________________________
-Task marked as complete: [T][X] borrow books
+Task marked as complete: [D][X] breh Deadline: 2005-12-05
 
 ____________________________________________________________
-Here is the current list of tasks:
-1. [T][X] borrow books
-2. [D][ ] bruh Deadline: Sunday 2359
-____________________________________________________________
-Event created: [E][ ] roflmao Start: 2025 End: 2026
+Task marked as incomplete: [D][ ] breh Deadline: 2005-12-05
 
+____________________________________________________________
+Task created: [E][ ] rofl Start: Mar 12 2025 End: May 17 2025
 There are currently 3 tasks.
 ____________________________________________________________
-Here is the current list of tasks:
-1. [T][X] borrow books
-2. [D][ ] bruh Deadline: Sunday 2359
-3. [E][ ] roflmao Start: 2025 End: 2026
+Task marked as complete: [E][X] rofl Start: Mar 12 2025 End: May 17 2025
+
 ____________________________________________________________
-Task marked as complete: [E][X] roflmao Start: 2025 End: 2026
+Task marked as incomplete: [E][ ] rofl Start: Mar 12 2025 End: May 17 2025
 
 ____________________________________________________________
 Here is the current list of tasks:
-1. [T][X] borrow books
-2. [D][ ] bruh Deadline: Sunday 2359
-3. [E][X] roflmao Start: 2025 End: 2026
+1. [T][ ] bruh
+2. [D][ ] breh Deadline: 2005-12-05
+3. [E][ ] rofl Start: Mar 12 2025 End: May 17 2025
+
+____________________________________________________________
+Task deleted: [T][ ] bruh
+There are currently 2 tasks.
+____________________________________________________________
+Task deleted: [D][ ] breh Deadline: 2005-12-05
+There are currently 1 tasks.
+____________________________________________________________
+Task deleted: [E][ ] rofl Start: Mar 12 2025 End: May 17 2025
+There are currently 0 tasks.
+____________________________________________________________
+Here is the current list of tasks:
+
 ____________________________________________________________
 Goodbye!
 ____________________________________________________________

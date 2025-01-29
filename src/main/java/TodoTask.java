@@ -1,6 +1,6 @@
 public class TodoTask extends Task {
-    public TodoTask(String name, int id) {
-        super(name, id);
+    public TodoTask(String name) {
+        super(name);
     }
 
     public String getTaskType() {
