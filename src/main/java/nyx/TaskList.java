@@ -4,13 +4,27 @@ import java.util.ArrayList;
 
 import nyx.tasks.Task;
 
+/**
+ * The TaskList class manages a list of tasks.
+ * It provides methods to add, delete, and mark tasks as complete or incomplete.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Constructs a new TaskList instance with the specified list of tasks.
+     *
+     * @param tasks The initial list of tasks.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Returns a string representation of the current list of tasks.
+     *
+     * @return A string representing the current list of tasks.
+     */
     public String getTaskList() {
         StringBuilder sb = new StringBuilder();
         sb.append("Here is the current list of tasks:\n");
@@ -21,6 +35,11 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Returns a string representation of the tasks in a format suitable for saving to a file.
+     *
+     * @return A string representing the tasks in a save format.
+     */
     public String toSaveFormat() {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {
@@ -30,12 +49,24 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Adds a task to the task list and displays a message using the specified UI.
+     *
+     * @param task The task to add.
+     * @param ui   The UI to use for displaying messages.
+     */
     public void addTask(Task task, Ui ui) {
         tasks.add(task);
         String output = "Task created: " + task + "\n" + "There are currently " + tasks.size() + " tasks.";
         ui.displayString(output);
     }
 
+    /**
+     * Deletes a task from the task list at the specified index and displays a message using the specified UI.
+     *
+     * @param taskIndex The index of the task to delete.
+     * @param ui        The UI to use for displaying messages.
+     */
     public void deleteTask(int taskIndex, Ui ui) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             Task taskToDelete = tasks.get(taskIndex);
@@ -45,9 +76,14 @@ public class TaskList {
         } else {
             ui.displayString("Invalid task number.");
         }
-
     }
 
+    /**
+     * Marks a task as complete at the specified index and displays a message using the specified UI.
+     *
+     * @param taskIndex The index of the task to mark as complete.
+     * @param ui        The UI to use for displaying messages.
+     */
     public void markTaskAsComplete(int taskIndex, Ui ui) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             tasks.get(taskIndex).markAsComplete();
@@ -58,6 +94,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as incomplete at the specified index and displays a message using the specified UI.
+     *
+     * @param taskIndex The index of the task to mark as incomplete.
+     * @param ui        The UI to use for displaying messages.
+     */
     public void markTaskAsIncomplete(int taskIndex, Ui ui) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             tasks.get(taskIndex).markAsIncomplete();
@@ -68,9 +110,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the number of tasks in the task list.
+     *
+     * @return The number of tasks in the task list.
+     */
     public int getTaskCount() {
         return tasks.size();
     }
-
-
 }

@@ -9,14 +9,30 @@ import nyx.TaskList;
 import nyx.Ui;
 import nyx.tasks.DeadlineTask;
 
-public class DeadlineCommand extends Command{
+/**
+ * Represents a command to add a deadline task.
+ */
+public class DeadlineCommand extends Command {
 
     private final String command;
 
+    /**
+     * Constructs a new DeadlineCommand instance with the specified input command.
+     *
+     * @param input The input command string.
+     */
     public DeadlineCommand(String input) {
         this.command = input;
     }
 
+    /**
+     * Executes the DeadlineCommand, adding a deadline task to the task list.
+     *
+     * @param taskList The task list.
+     * @param storage  The storage handler.
+     * @param ui       The user interface handler.
+     * @throws NyxException If an error occurs during execution.
+     */
     public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             DeadlineTask newTask = getDeadlineTask();
@@ -28,16 +44,19 @@ public class DeadlineCommand extends Command{
         }
     }
 
+    /**
+     * Parses the input command to create a DeadlineTask.
+     *
+     * @return The created DeadlineTask.
+     */
     private DeadlineTask getDeadlineTask() {
         String parts = this.command.substring(9);
         String[] splitParts = parts.split(" -by ");
         String taskName = splitParts[0].trim();
         String deadlineString = splitParts[1];
 
-        // Parse the deadline String
+        // Parse the deadline string
         LocalDate deadline = LocalDate.parse(deadlineString);
-
-        DeadlineTask newTask = new DeadlineTask(taskName, deadline);
 
         return new DeadlineTask(taskName, deadline);
     }
