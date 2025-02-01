@@ -1,9 +1,9 @@
 package nyx.commands;
-
-import nyx.exceptions.NyxException;
 import nyx.Storage;
 import nyx.TaskList;
 import nyx.Ui;
+import nyx.exceptions.NyxException;
+
 
 /**
  * Represents an abstract command.

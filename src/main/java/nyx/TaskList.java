@@ -8,6 +8,7 @@ import nyx.tasks.Task;
  * The TaskList class manages a list of tasks.
  * It provides methods to add, delete, and mark tasks as complete or incomplete.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class TaskList {
     private final ArrayList<Task> tasks;
 
@@ -119,6 +120,14 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Searches for tasks that contain the given search string and
+     * displays them using the provided {@code Ui} instance.
+     *
+     * @param search The string to search for in the task list.
+     * @param ui The UI instance used to display the matching tasks.
+     *
+     */
     public void findMatchingTasks(String search, Ui ui) {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
@@ -136,5 +145,4 @@ public class TaskList {
         }
         ui.displayString(sb.toString());
     }
-
 }

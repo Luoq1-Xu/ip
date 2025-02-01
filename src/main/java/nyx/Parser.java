@@ -5,12 +5,13 @@ import nyx.commands.Command;
 import nyx.commands.DeadlineCommand;
 import nyx.commands.DeleteCommand;
 import nyx.commands.EventCommand;
+import nyx.commands.FindCommand;
 import nyx.commands.ListCommand;
 import nyx.commands.MarkCommand;
 import nyx.commands.TodoCommand;
 import nyx.commands.UnknownCommand;
 import nyx.commands.UnmarkCommand;
-import nyx.commands.FindCommand;
+
 
 /**
  * The Parser class is responsible for parsing user input and returning the appropriate command.
