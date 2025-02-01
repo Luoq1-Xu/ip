@@ -32,13 +32,15 @@ public class EventCommand extends Command {
      * @param taskList The task list.
      * @param storage  The storage handler.
      * @param ui       The user interface handler.
+     * @return     The output string to be displayed.
      * @throws NyxException If an error occurs during execution.
      */
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             EventTask newTask = getEventTask();
-            taskList.addTask(newTask, ui);
+            String output = taskList.addTask(newTask);
             storage.saveTaskData(taskList.toSaveFormat());
+            return output;
         } catch (Exception e) {
             throw new InvalidUsageException("Wrong usage. Correct usage: event [event name] -start [time] -end [time]\n"
                     + "Dates should be in YYYY-MM-DD format. For example: 2025-02-19");

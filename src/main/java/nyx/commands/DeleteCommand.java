@@ -29,14 +29,16 @@ public class DeleteCommand extends Command {
      * @param taskList The task list.
      * @param storage  The storage handler.
      * @param ui       The user interface handler.
+     * @return     The output string to be displayed.
      * @throws NyxException If an error occurs during execution.
      */
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             String[] splitInput = this.command.split(" ");
             int taskIndex = Integer.parseInt(splitInput[1]) - 1;
-            taskList.deleteTask(taskIndex, ui);
+            String output = taskList.deleteTask(taskIndex);
             storage.saveTaskData(taskList.toSaveFormat());
+            return output;
         } catch (Exception e) {
             throw new InvalidUsageException("Wrong usage. Correct usage: delete [task id]");
         }

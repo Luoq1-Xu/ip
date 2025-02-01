@@ -30,14 +30,16 @@ public class TodoCommand extends Command {
      * @param taskList The task list.
      * @param storage  The storage handler.
      * @param ui       The user interface handler.
+     * @return     The output string to be displayed.
      * @throws NyxException If an error occurs during execution.
      */
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             String args = this.command.substring(5);
             TodoTask newTask = new TodoTask(args);
-            taskList.addTask(newTask, ui);
+            String output = taskList.addTask(newTask);
             storage.saveTaskData(taskList.toSaveFormat());
+            return output;
         } catch (Exception e) {
             throw new InvalidUsageException("Wrong Usage. Correct usage: todo [task name] ");
         }

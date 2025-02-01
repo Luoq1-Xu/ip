@@ -16,7 +16,7 @@ public class FindCommand extends Command {
         this.query = input.substring(5).trim();
     }
 
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
-        taskList.findMatchingTasks(this.query, ui);
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+        return taskList.findMatchingTasks(this.query);
     }
 }
