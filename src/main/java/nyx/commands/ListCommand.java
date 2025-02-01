@@ -17,9 +17,10 @@ public class ListCommand extends Command {
      * @param taskList The task list.
      * @param storage  The storage handler.
      * @param ui       The user interface handler.
+     * @return     The output string to be displayed.
      * @throws NyxException If an error occurs during execution.
      */
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
-        ui.displayString(taskList.getTaskList());
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+        return taskList.getTaskList();
     }
 }

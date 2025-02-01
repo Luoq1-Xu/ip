@@ -8,6 +8,7 @@ import nyx.exceptions.NyxException;
  * The main class for the Nyx chatbot application.
  * It initializes the necessary components and runs the main loop to process user commands.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class Nyx {
 
     private final Storage storage;
@@ -55,5 +56,20 @@ public class Nyx {
      */
     public static void main(String[] args) {
         new Nyx().run();
+    }
+
+    /**
+     * The main method to start the Nyx chatbot application.
+     *
+     * @param input The input entered by the user.
+     * @return      The output or error generated after executing the command.
+     */
+    public String getResponse(String input) {
+        Command c = Parser.parse(input);
+        try {
+            return c.execute(taskList, storage, ui);
+        } catch (NyxException e) {
+            return e.getMessage();
+        }
     }
 }

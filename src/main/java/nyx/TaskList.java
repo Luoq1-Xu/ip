@@ -54,28 +54,26 @@ public class TaskList {
      * Adds a task to the task list and displays a message using the specified UI.
      *
      * @param task The task to add.
-     * @param ui   The UI to use for displaying messages.
+     * @return     The output string to be displayed.
      */
-    public void addTask(Task task, Ui ui) {
+    public String addTask(Task task) {
         tasks.add(task);
-        String output = "Task created: " + task + "\n" + "There are currently " + tasks.size() + " tasks.";
-        ui.displayString(output);
+        return "Task created: " + task + "\n" + "There are currently " + tasks.size() + " tasks.";
     }
 
     /**
      * Deletes a task from the task list at the specified index and displays a message using the specified UI.
      *
      * @param taskIndex The index of the task to delete.
-     * @param ui        The UI to use for displaying messages.
+     * @return     The output string to be displayed.
      */
-    public void deleteTask(int taskIndex, Ui ui) {
+    public String deleteTask(int taskIndex) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             Task taskToDelete = tasks.get(taskIndex);
             tasks.remove(taskIndex);
-            String output = "Task deleted: " + taskToDelete + "\n" + "There are currently " + tasks.size() + " tasks.";
-            ui.displayString(output);
+            return "Task deleted: " + taskToDelete + "\n" + "There are currently " + tasks.size() + " tasks.";
         } else {
-            ui.displayString("Invalid task number.");
+            return "Invalid task number.";
         }
     }
 
@@ -83,15 +81,14 @@ public class TaskList {
      * Marks a task as complete at the specified index and displays a message using the specified UI.
      *
      * @param taskIndex The index of the task to mark as complete.
-     * @param ui        The UI to use for displaying messages.
+     * @return          The output string to be displayed.
      */
-    public void markTaskAsComplete(int taskIndex, Ui ui) {
+    public String markTaskAsComplete(int taskIndex) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             tasks.get(taskIndex).markAsComplete();
-            String output = "Task marked as complete: " + tasks.get(taskIndex) + "\n";
-            ui.displayString(output);
+            return "Task marked as complete: " + tasks.get(taskIndex) + "\n";
         } else {
-            ui.displayString("Invalid task number.\n");
+            return "Invalid task number.\n";
         }
     }
 
@@ -99,15 +96,14 @@ public class TaskList {
      * Marks a task as incomplete at the specified index and displays a message using the specified UI.
      *
      * @param taskIndex The index of the task to mark as incomplete.
-     * @param ui        The UI to use for displaying messages.
+     * @return the output after executing the command.
      */
-    public void markTaskAsIncomplete(int taskIndex, Ui ui) {
+    public String markTaskAsIncomplete(int taskIndex) {
         if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
             tasks.get(taskIndex).markAsIncomplete();
-            String output = "Task marked as incomplete: " + tasks.get(taskIndex) + "\n";
-            ui.displayString(output);
+            return "Task marked as incomplete: " + tasks.get(taskIndex) + "\n";
         } else {
-            ui.displayString("Invalid task number.\n");
+            return "Invalid task number.\n";
         }
     }
 
@@ -125,10 +121,9 @@ public class TaskList {
      * displays them using the provided {@code Ui} instance.
      *
      * @param search The string to search for in the task list.
-     * @param ui The UI instance used to display the matching tasks.
-     *
+     * @return       The output string to be displayed.
      */
-    public void findMatchingTasks(String search, Ui ui) {
+    public String findMatchingTasks(String search) {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
         int matchingTasks = 0;
@@ -140,9 +135,8 @@ public class TaskList {
             }
         }
         if (matchingTasks == 0) {
-            ui.displayString("No matching tasks found.");
-            return;
+            return "No matching tasks found.";
         }
-        ui.displayString(sb.toString());
+        return sb.toString();
     }
 }

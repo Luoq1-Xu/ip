@@ -31,13 +31,15 @@ public class DeadlineCommand extends Command {
      * @param taskList The task list.
      * @param storage  The storage handler.
      * @param ui       The user interface handler.
+     * @return         The output after executing the command.
      * @throws NyxException If an error occurs during execution.
      */
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
             DeadlineTask newTask = getDeadlineTask();
-            taskList.addTask(newTask, ui);
+            String output = taskList.addTask(newTask);
             storage.saveTaskData(taskList.toSaveFormat());
+            return output;
         } catch (Exception e) {
             throw new InvalidUsageException("Wrong Usage. Correct usage: deadline [task name] -by [deadline]\n"
                     + "Dates should be in YYYY-MM-DD format. For example: 2025-02-19");
