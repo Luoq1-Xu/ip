@@ -4,14 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 
 import nyx.tasks.DeadlineTask;
@@ -59,7 +56,9 @@ public class Storage {
                     switch (taskType) {
                     case "T":
                         TodoTask todoTask = new TodoTask(taskName);
-                        if (isDone) todoTask.markAsComplete();
+                        if (isDone) {
+                            todoTask.markAsComplete();
+                        }
                         tasks.add(todoTask);
                         break;
                     case "D":
@@ -67,7 +66,9 @@ public class Storage {
                         String normalizedDate = normalizeDateString(deadlineString);
                         LocalDate deadline = LocalDate.parse(normalizedDate, formatter);
                         DeadlineTask deadlineTask = new DeadlineTask(taskName, deadline);
-                        if (isDone) deadlineTask.markAsComplete();
+                        if (isDone) {
+                            deadlineTask.markAsComplete();
+                        }
                         tasks.add(deadlineTask);
                         break;
                     case "E":
@@ -78,7 +79,9 @@ public class Storage {
                         LocalDate startTime = LocalDate.parse(normalizedStart, formatter);
                         LocalDate endTime = LocalDate.parse(normalizedEnd, formatter);
                         EventTask eventTask = new EventTask(taskName, startTime, endTime);
-                        if (isDone) eventTask.markAsComplete();
+                        if (isDone) {
+                            eventTask.markAsComplete();
+                        }
                         tasks.add(eventTask);
                         break;
                     default:

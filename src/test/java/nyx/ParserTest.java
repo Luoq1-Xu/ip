@@ -2,10 +2,20 @@
 
 package nyx;
 
-import nyx.commands.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import nyx.commands.ByeCommand;
+import nyx.commands.Command;
+import nyx.commands.DeadlineCommand;
+import nyx.commands.DeleteCommand;
+import nyx.commands.EventCommand;
+import nyx.commands.ListCommand;
+import nyx.commands.MarkCommand;
+import nyx.commands.TodoCommand;
+import nyx.commands.UnknownCommand;
+import nyx.commands.UnmarkCommand;
 
 public class ParserTest {
 

@@ -5,6 +5,10 @@ import nyx.TaskList;
 import nyx.Ui;
 import nyx.exceptions.NyxException;
 
+/**
+ * Represents a command that searches for tasks in the task list that contain a specified query string.
+ * The search query is extracted from the user input.
+ */
 public class FindCommand extends Command {
     private final String query;
 

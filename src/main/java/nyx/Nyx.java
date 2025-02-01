@@ -2,7 +2,6 @@ package nyx;
 
 import nyx.commands.ByeCommand;
 import nyx.commands.Command;
-
 import nyx.exceptions.NyxException;
 
 /**
