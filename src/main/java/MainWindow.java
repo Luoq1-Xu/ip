@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import nyx.Nyx;
 
 /**
@@ -29,9 +30,17 @@ public class MainWindow extends AnchorPane {
     private final Image frierenImage = new Image(this.getClass().getResourceAsStream("/images/Frieren.png"));
     private final Image fernImage = new Image(this.getClass().getResourceAsStream("/images/Fern.png"));
 
+
+    /**
+     * Initializes the main window.
+     * Binds the scroll pane's vertical value property to the height property of the dialog container.
+     * Sets the font for the send button and user input field.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        sendButton.setFont(Font.font("Lucida Sans"));
+        userInput.setFont(Font.font("Lucida Sans", 20));
     }
 
     /** Injects the Nyx instance */

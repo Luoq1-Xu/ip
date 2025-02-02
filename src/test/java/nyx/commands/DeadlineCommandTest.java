@@ -1,15 +1,18 @@
 package nyx.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import nyx.Storage;
 import nyx.TaskList;
 import nyx.Ui;
 import nyx.exceptions.InvalidUsageException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class DeadlineCommandTest {
 
@@ -52,8 +55,7 @@ public class DeadlineCommandTest {
         String input = "deadline submit report 2025-02-19"; // Missing " -by "
         DeadlineCommand command = new DeadlineCommand(input);
 
-        assertThrows(InvalidUsageException.class,
-                () -> command.execute(taskList, storage, ui),
+        assertThrows(InvalidUsageException.class, () -> command.execute(taskList, storage, ui),
                 "Expected an InvalidUsageException for missing '-by' delimiter.");
         assertEquals(0, taskList.getTaskCount(),
                 "No tasks should be added to TaskList if an exception occurs.");
@@ -64,8 +66,7 @@ public class DeadlineCommandTest {
         String input = "deadline submit report -by 19-02-2025"; // Wrong date format
         DeadlineCommand command = new DeadlineCommand(input);
 
-        assertThrows(InvalidUsageException.class,
-                () -> command.execute(taskList, storage, ui),
+        assertThrows(InvalidUsageException.class, () -> command.execute(taskList, storage, ui),
                 "Should throw InvalidUsageException if date format is not YYYY-MM-DD.");
         assertEquals(0, taskList.getTaskCount(),
                 "No tasks should be added to TaskList if an exception occurs.");
