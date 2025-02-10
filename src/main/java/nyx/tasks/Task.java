@@ -1,5 +1,7 @@
 package nyx.tasks;
 
+import java.util.ArrayList;
+
 /**
  * The Task class represents a generic task.
  * It provides methods to mark the task as complete or incomplete, and to get the task's details.
@@ -7,6 +9,7 @@ package nyx.tasks;
 public abstract class Task {
     private final String name;
     private boolean completed = false;
+    private final ArrayList<String> tags;
 
     /**
      * Constructs a new Task instance with the specified name.
@@ -15,6 +18,7 @@ public abstract class Task {
      */
     public Task(String name) {
         this.name = name;
+        this.tags = new ArrayList<>();
     }
 
     /**
@@ -62,7 +66,19 @@ public abstract class Task {
      * @return A string representing the task in a save format.
      */
     public String toSaveFormat() {
-        return this.getTaskType() + " | " + this.isCompleted() + " | " + this.getName();
+        // Create a comma-separated string of tags; if empty, it remains blank.
+        String tagsFormatted = String.join(",", tags);
+
+        // Format the output with a consistent delimiter for easy parsing.
+        return String.format("%s | %d | %s | %s",
+                getTaskType(), isCompleted(), getName(), tagsFormatted);
+    }
+
+    /**
+     * Adds a tag to the current task.
+     */
+    public void addTag(String tag) {
+        this.tags.add(tag);
     }
 
     /**
@@ -80,6 +96,13 @@ public abstract class Task {
         }
         sb.append(" ");
         sb.append(this.name);
+        sb.append(" ");
+
+        for (int i = 0; i < this.tags.size(); i++) {
+            String tag = "#" + this.tags.get(i);
+            sb.append(tag);
+        }
+
         return sb.toString();
     }
 }

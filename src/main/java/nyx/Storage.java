@@ -21,6 +21,8 @@ import nyx.tasks.TodoTask;
  */
 public class Storage {
     private static final Path FILE_PATH = Paths.get("data", "tasks.txt");
+    private static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("MMM d yyyy");
 
     /**
      * Loads task data from the file.
@@ -43,58 +45,18 @@ public class Storage {
                 return tasks; // No data to load yet
             }
 
-            // Define the formatter for the expected date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-
             try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH.toFile()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    // Read task details
-                    String[] splitInput = line.split(" \\| ");
-                    String taskType = splitInput[0];
-                    boolean isDone = splitInput[1].equals("1");
-                    String taskName = splitInput[2];
-
-                    switch (taskType) {
-                    case "T":
-                        TodoTask todoTask = new TodoTask(taskName);
-                        if (isDone) {
-                            todoTask.markAsComplete();
-                        }
-                        tasks.add(todoTask);
-                        break;
-                    case "D":
-                        String deadlineString = splitInput[3];
-                        String normalizedDate = normalizeDateString(deadlineString);
-                        LocalDate deadline = LocalDate.parse(normalizedDate, formatter);
-
-                        DeadlineTask deadlineTask = new DeadlineTask(taskName, deadline);
-                        if (isDone) {
-                            deadlineTask.markAsComplete();
-                        }
-                        tasks.add(deadlineTask);
-                        break;
-                    case "E":
-                        String startString = splitInput[3];
-                        String endString = splitInput[4];
-                        String normalizedStart = normalizeDateString(startString);
-                        String normalizedEnd = normalizeDateString(endString);
-                        LocalDate startTime = LocalDate.parse(normalizedStart, formatter);
-                        LocalDate endTime = LocalDate.parse(normalizedEnd, formatter);
-
-                        EventTask eventTask = new EventTask(taskName, startTime, endTime);
-                        if (isDone) {
-                            eventTask.markAsComplete();
-                        }
-                        tasks.add(eventTask);
-                        break;
-                    default:
-                        // Ignore malformed lines
-                        break;
+                    Task task = parseTask(line);
+                    if (task != null) {
+                        tasks.add(task);
                     }
                 }
-                return tasks;
             }
+
+            return tasks;
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -124,17 +86,69 @@ public class Storage {
     }
 
     /**
-     * Helper method to normalize the date string.
-     * Ensures the day part of the date is always two digits.
+     * Parses a line of text into a Task instance, using the save format generated
+     * by Task#toSaveFormat(). The base save format is:
+     * taskType | isCompleted (0/1) | taskName | tags
+     * DeadlineTask adds:
+     *  | deadline
+     * EventTask adds:
+     *  | startDate | endDate
      *
-     * @param dateString The date string to normalize.
-     * @return The normalized date string.
+     * @param line the line to parse.
+     * @return a Task instance, or null if parsing fails.
      */
-    private static String normalizeDateString(String dateString) {
-        String[] parts = dateString.split(" ");
-        if (parts[1].length() == 1) {
-            parts[1] = "0" + parts[1]; // Add leading zero to day part
+    public static Task parseTask(String line) {
+        String[] tokens = line.split(" \\| ");
+        if (tokens.length < 4) {
+            return null;
         }
-        return String.join(" ", parts);
+
+        String taskType = tokens[0];
+        boolean isDone = tokens[1].equals("1");
+        String taskName = tokens[2];
+        String tagsToken = tokens[3];
+
+        Task task = null;
+
+        switch (taskType) {
+        case "T":
+            task = new TodoTask(taskName);
+            break;
+        case "D":
+            if (tokens.length < 5) {
+                return null;
+            }
+            String deadlineString = tokens[4];
+            LocalDate deadline = LocalDate.parse(deadlineString, DATE_FORMATTER);
+            task = new DeadlineTask(taskName, deadline);
+            break;
+        case "E":
+            if (tokens.length < 6) {
+                return null;
+            }
+            String startString = tokens[4];
+            String endString = tokens[5];
+            LocalDate startDate = LocalDate.parse(startString, DATE_FORMATTER);
+            LocalDate endDate = LocalDate.parse(endString, DATE_FORMATTER);
+            task = new EventTask(taskName, startDate, endDate);
+            break;
+        default:
+            return null;
+        }
+
+        // Set completion status
+        if (isDone) {
+            task.markAsComplete();
+        }
+
+        // Parse and add tags if available (tags are comma-separated)
+        if (!tagsToken.isEmpty()) {
+            String[] tags = tagsToken.split(",");
+            for (String tag : tags) {
+                task.addTag(tag);
+            }
+        }
+
+        return task;
     }
 }

@@ -1,5 +1,6 @@
 package nyx;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import nyx.tasks.Task;
@@ -102,6 +103,21 @@ public class TaskList {
         }
         tasks.get(taskIndex).markAsIncomplete();
         return "Task marked as incomplete: " + tasks.get(taskIndex) + "\n";
+    }
+
+    /**
+     * Tags a task at the specified index with a given tag.
+     *
+     * @param taskIndex The index of the task to mark as tag.
+     * @return the output after executing the command.
+     */
+    public String tagTask(int taskIndex, String tag) {
+        if (taskIndex > tasks.size() || tasks.get(taskIndex) == null) {
+            return "Invalid task number.";
+        }
+        Task taskToTag = tasks.get(taskIndex);
+        taskToTag.addTag(tag);
+        return "Tag " + tag + " added to task " + taskToTag + "\n";
     }
 
     /**

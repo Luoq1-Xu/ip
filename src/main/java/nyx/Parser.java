@@ -8,6 +8,7 @@ import nyx.commands.EventCommand;
 import nyx.commands.FindCommand;
 import nyx.commands.ListCommand;
 import nyx.commands.MarkCommand;
+import nyx.commands.TagCommand;
 import nyx.commands.TodoCommand;
 import nyx.commands.UnknownCommand;
 import nyx.commands.UnmarkCommand;
@@ -17,22 +18,6 @@ import nyx.commands.UnmarkCommand;
  * The Parser class is responsible for parsing user input and returning the appropriate command.
  */
 public class Parser {
-
-    /**
-     * Enum representing the different types of commands.
-     */
-    private enum CommandType {
-        TODO,
-        DEADLINE,
-        EVENT,
-        MARK,
-        UNMARK,
-        DELETE,
-        LIST,
-        BYE,
-        FILTER,
-        UNKNOWN
-    }
 
     /**
      * Parses the user input and returns the corresponding command.
@@ -56,6 +41,7 @@ public class Parser {
             case "unmark" -> new UnmarkCommand(input);
             case "delete" -> new DeleteCommand(input);
             case "find" -> new FindCommand(input);
+            case "tag" -> new TagCommand(input);
             default -> new UnknownCommand();
         };
     }
