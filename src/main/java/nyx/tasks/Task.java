@@ -43,7 +43,7 @@ public abstract class Task {
      *
      * @return 1 if the task is completed, 0 otherwise.
      */
-    public int getCompletedStatus() {
+    public int isCompleted() {
         return completed ? 1 : 0;
     }
 
@@ -62,7 +62,7 @@ public abstract class Task {
      * @return A string representing the task in a save format.
      */
     public String toSaveFormat() {
-        return this.getTaskType() + " | " + this.getCompletedStatus() + " | " + this.getName();
+        return this.getTaskType() + " | " + this.isCompleted() + " | " + this.getName();
     }
 
     /**
