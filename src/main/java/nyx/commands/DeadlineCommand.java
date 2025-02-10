@@ -38,6 +38,7 @@ public class DeadlineCommand extends Command {
         try {
             DeadlineTask newTask = getDeadlineTask();
             String output = taskList.addTask(newTask);
+            assert output != null : "Output to be displayed should not be null";
             storage.saveTaskData(taskList.toSaveFormat());
             return output;
         } catch (Exception e) {

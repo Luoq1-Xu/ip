@@ -67,7 +67,9 @@ public class Nyx {
     public String getResponse(String input) {
         Command c = Parser.parse(input);
         try {
-            return c.execute(taskList, storage, ui);
+            String response = c.execute(taskList, storage, ui);
+            assert response != null : "response should be not null";
+            return response;
         } catch (NyxException e) {
             return e.getMessage();
         }
