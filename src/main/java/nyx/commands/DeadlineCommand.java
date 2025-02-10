@@ -52,6 +52,7 @@ public class DeadlineCommand extends Command {
      * @return The created DeadlineTask.
      */
     private DeadlineTask getDeadlineTask() {
+        // Split input to get task name and deadline
         String parts = this.command.substring(9);
         String[] splitParts = parts.split(" -by ");
         String taskName = splitParts[0].trim();

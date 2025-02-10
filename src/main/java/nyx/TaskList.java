@@ -68,13 +68,12 @@ public class TaskList {
      * @return     The output string to be displayed.
      */
     public String deleteTask(int taskIndex) {
-        if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
-            Task taskToDelete = tasks.get(taskIndex);
-            tasks.remove(taskIndex);
-            return "Task deleted: " + taskToDelete + "\n" + "There are currently " + tasks.size() + " tasks.";
-        } else {
+        if (taskIndex > tasks.size() || tasks.get(taskIndex) == null) {
             return "Invalid task number.";
         }
+        Task taskToDelete = tasks.get(taskIndex);
+        tasks.remove(taskIndex);
+        return "Task deleted: " + taskToDelete + "\n" + "There are currently " + tasks.size() + " tasks.";
     }
 
     /**
@@ -84,12 +83,11 @@ public class TaskList {
      * @return          The output string to be displayed.
      */
     public String markTaskAsComplete(int taskIndex) {
-        if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
-            tasks.get(taskIndex).markAsComplete();
-            return "Task marked as complete: " + tasks.get(taskIndex) + "\n";
-        } else {
-            return "Invalid task number.\n";
+        if (taskIndex > tasks.size() || tasks.get(taskIndex) == null) {
+            return "Invalid task number.";
         }
+        tasks.get(taskIndex).markAsComplete();
+        return "Task marked as complete: " + tasks.get(taskIndex) + "\n";
     }
 
     /**
@@ -99,12 +97,11 @@ public class TaskList {
      * @return the output after executing the command.
      */
     public String markTaskAsIncomplete(int taskIndex) {
-        if (taskIndex < tasks.size() && tasks.get(taskIndex) != null) {
-            tasks.get(taskIndex).markAsIncomplete();
-            return "Task marked as incomplete: " + tasks.get(taskIndex) + "\n";
-        } else {
-            return "Invalid task number.\n";
+        if (taskIndex > tasks.size() || tasks.get(taskIndex) == null) {
+            return "Invalid task number.";
         }
+        tasks.get(taskIndex).markAsIncomplete();
+        return "Task marked as incomplete: " + tasks.get(taskIndex) + "\n";
     }
 
     /**

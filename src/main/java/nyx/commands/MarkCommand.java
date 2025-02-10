@@ -35,6 +35,7 @@ public class MarkCommand extends Command {
         try {
             String[] splitInput = this.command.split(" ");
             int taskIndex = Integer.parseInt(splitInput[1]) - 1;
+
             String output = taskList.markTaskAsComplete(taskIndex);
             storage.saveTaskData(taskList.toSaveFormat());
             return output;

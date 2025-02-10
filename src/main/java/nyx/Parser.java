@@ -41,26 +41,22 @@ public class Parser {
      * @return The command corresponding to the user input.
      */
     public static Command parse(String input) {
-        if (input.startsWith("todo ")) {
-            return new TodoCommand(input);
-        } else if (input.startsWith("deadline ")) {
-            return new DeadlineCommand(input);
-        } else if (input.startsWith("event ")) {
-            return new EventCommand(input);
-        } else if (input.equals("list")) {
-            return new ListCommand();
-        } else if (input.equals("bye")) {
-            return new ByeCommand();
-        } else if (input.startsWith("mark ")) {
-            return new MarkCommand(input);
-        } else if (input.startsWith("unmark ")) {
-            return new UnmarkCommand(input);
-        } else if (input.startsWith("delete ")) {
-            return new DeleteCommand(input);
-        } else if (input.startsWith("find ")) {
-            return new FindCommand(input);
-        } else {
-            return new UnknownCommand();
-        }
+        // Get command as first word of the input
+        String trimmedInput = input.trim();
+        String[] parts = trimmedInput.split(" ", 2);
+        String command = parts[0];
+
+        return switch (command) {
+            case "todo" -> new TodoCommand(input);
+            case "deadline" -> new DeadlineCommand(input);
+            case "event" -> new EventCommand(input);
+            case "list" -> new ListCommand();
+            case "bye" -> new ByeCommand();
+            case "mark" -> new MarkCommand(input);
+            case "unmark" -> new UnmarkCommand(input);
+            case "delete" -> new DeleteCommand(input);
+            case "find" -> new FindCommand(input);
+            default -> new UnknownCommand();
+        };
     }
 }

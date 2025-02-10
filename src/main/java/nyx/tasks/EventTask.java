@@ -40,7 +40,8 @@ public class EventTask extends Task {
      */
     @Override
     public String toSaveFormat() {
-        return super.toSaveFormat() + " | " + this.start.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+        return super.toSaveFormat() + " | "
+                + this.start.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + " | " + this.end.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
