@@ -34,8 +34,11 @@ public class DeleteCommand extends Command {
      */
     public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
         try {
+            // Get index of task
             String[] splitInput = this.command.split(" ");
             int taskIndex = Integer.parseInt(splitInput[1]) - 1;
+
+            // Delete the task and update the storage
             String output = taskList.deleteTask(taskIndex);
             storage.saveTaskData(taskList.toSaveFormat());
             return output;

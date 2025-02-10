@@ -53,6 +53,7 @@ public class EventCommand extends Command {
      * @return The created EventTask.
      */
     private EventTask getEventTask() {
+        // Parse the event name and raw start and end times
         String args = this.command.substring(6);
         String[] parts = args.split(" -start | -end ");
         String eventName = parts[0].trim();

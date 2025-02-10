@@ -49,10 +49,12 @@ public class Storage {
             try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH.toFile()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
+                    // Read task details
                     String[] splitInput = line.split(" \\| ");
                     String taskType = splitInput[0];
                     boolean isDone = splitInput[1].equals("1");
                     String taskName = splitInput[2];
+
                     switch (taskType) {
                     case "T":
                         TodoTask todoTask = new TodoTask(taskName);
@@ -65,6 +67,7 @@ public class Storage {
                         String deadlineString = splitInput[3];
                         String normalizedDate = normalizeDateString(deadlineString);
                         LocalDate deadline = LocalDate.parse(normalizedDate, formatter);
+
                         DeadlineTask deadlineTask = new DeadlineTask(taskName, deadline);
                         if (isDone) {
                             deadlineTask.markAsComplete();
@@ -78,6 +81,7 @@ public class Storage {
                         String normalizedEnd = normalizeDateString(endString);
                         LocalDate startTime = LocalDate.parse(normalizedStart, formatter);
                         LocalDate endTime = LocalDate.parse(normalizedEnd, formatter);
+
                         EventTask eventTask = new EventTask(taskName, startTime, endTime);
                         if (isDone) {
                             eventTask.markAsComplete();

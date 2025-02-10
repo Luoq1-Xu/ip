@@ -37,6 +37,7 @@ public class TodoCommand extends Command {
         try {
             String args = this.command.substring(5);
             TodoTask newTask = new TodoTask(args);
+
             String output = taskList.addTask(newTask);
             storage.saveTaskData(taskList.toSaveFormat());
             return output;
