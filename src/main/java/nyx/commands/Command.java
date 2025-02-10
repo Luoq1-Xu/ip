@@ -21,5 +21,10 @@ public abstract class Command {
      * @throws NyxException If an error occurs during execution.
      *
      */
-    public abstract String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException;
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
+        assert taskList != null : "taskList should not be null";
+        assert storage != null : "storage should not be null";
+        assert ui != null : "ui should not be null";
+        return "";
+    }
 }
