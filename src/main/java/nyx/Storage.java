@@ -108,7 +108,7 @@ public class Storage {
         String taskName = tokens[2];
         String tagsToken = tokens[3];
 
-        Task task = null;
+        Task task;
 
         switch (taskType) {
         case "T":

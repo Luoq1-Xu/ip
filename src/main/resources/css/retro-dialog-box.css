@@ -12,3 +12,7 @@
     -fx-border-width: 1px;
     -fx-padding: 10px;
 }
+
+.error-message {
+    -fx-text-fill: red;
+}

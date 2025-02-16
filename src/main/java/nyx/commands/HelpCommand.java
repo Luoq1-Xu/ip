@@ -10,21 +10,21 @@ import nyx.exceptions.NyxException;
  */
 public class HelpCommand extends Command {
 
-    private static final String helpMessage =
-            """
-                List of commands:
-                
-                Create a todo task: todo [task name]
-                Create a deadline task: deadline [task name] -by [deadline]
-                Create a event task: event [event name] -start [time] -end [time]
-                List all tasks: list
-                Mark a task as complete: mark [task id]
-                Mark a task as incomplete: unmark [task id]
-                Delete a task: delete [task id]
-                Find a task: find [query]
-                Tag a task: Tag [task id] [tag name]
-                Show help menu: help
-                """;
+    private static final String helpMessage = """
+        List of commands:
+
+        Create a todo task: todo [task name]
+        Create a deadline task: deadline [task name] -by [deadline]
+        Create a event task: event [event name] -start [time] -end [time]
+        List all tasks: list
+        Mark a task as complete: mark [task id]
+        Mark a task as incomplete: unmark [task id]
+        Delete a task: delete [task id]
+        Find a task: find [query]
+        Tag a task: Tag [task id] [tag name]
+        Show help menu: help
+        Exit the application: bye
+        """;
     /**
      * Executes the HelpCommand, displaying a message of all commands.
      *

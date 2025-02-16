@@ -1,6 +1,5 @@
 package nyx;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import nyx.tasks.Task;

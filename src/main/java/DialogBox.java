@@ -46,13 +46,24 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    /**
+     * Changes the text in the dialog box to red to reflect an error.
+     */
+    private void markAsError() {
+        // Add the error style class to the label so that its text becomes red.
+        dialog.getStyleClass().add("error-message");
+    }
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getNyxDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        if (text.contains("Wrong") || text.contains("Unrecognized")) {
+            db.markAsError();
+        }
         return db;
     }
 }

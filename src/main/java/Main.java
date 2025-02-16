@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import nyx.Nyx;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for the Nyx chatbot using FXML.
  */
 public class Main extends Application {
 
@@ -27,7 +27,10 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(220);
             stage.setMinWidth(420);
-            fxmlLoader.<MainWindow>getController().setDuke(nyx); // inject the Nyx instance
+
+            MainWindow controller = fxmlLoader.getController();
+            controller.setNyx(nyx);
+            controller.showWelcomeMessage();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
