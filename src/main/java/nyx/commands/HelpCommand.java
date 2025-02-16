@@ -21,7 +21,7 @@ public class HelpCommand extends Command {
         Mark a task as incomplete: unmark [task id]
         Delete a task: delete [task id]
         Find a task: find [query]
-        Tag a task: Tag [task id] [tag name]
+        Tag a task: tag [task id] [tag name]
         Show help menu: help
         Exit the application: bye
         """;
