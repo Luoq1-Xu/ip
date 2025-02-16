@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import nyx.Nyx;
 
 /**
@@ -27,9 +27,10 @@ public class MainWindow extends AnchorPane {
 
     private Nyx nyx;
 
-    private final Image frierenImage = new Image(this.getClass().getResourceAsStream("/images/Frieren.png"));
-    private final Image fernImage = new Image(this.getClass().getResourceAsStream("/images/Fern.png"));
-
+    private final Image frierenImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Frieren.png")));
+    private final Image fernImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Fern.png")));
 
     /**
      * Initializes the main window.
@@ -39,16 +40,15 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        userInput.setFont(Font.font("Lucida Sans", 20));
     }
 
     /** Injects the Nyx instance */
-    public void setDuke(Nyx n) {
-        nyx = n;
+    public void setNyx(Nyx n) {
+        this.nyx = n;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Nyx's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -57,7 +57,7 @@ public class MainWindow extends AnchorPane {
         String response = nyx.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, frierenImage),
-                DialogBox.getDukeDialog(response, fernImage)
+                DialogBox.getNyxDialog(response, fernImage)
         );
         if (input.equals("bye")) {
             TimerTask timerTask = new TimerTask() {
@@ -70,5 +70,21 @@ public class MainWindow extends AnchorPane {
             timer.schedule(timerTask, 1000);
         }
         userInput.clear();
+    }
+
+    /**
+     * Displays a welcome message from Nyx.
+     */
+    @FXML
+    public void showWelcomeMessage() {
+        String startupMessage = """
+                Initializing system components...
+                Loading protocols...
+                Boot sequence complete.
+                NYX is online. Let's chat...
+                """;
+        dialogContainer.getChildren().add(
+                DialogBox.getNyxDialog(startupMessage, fernImage)
+        );
     }
 }
