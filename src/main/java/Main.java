@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nyx.Nyx;
 
@@ -17,8 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            Font.loadFont(getClass().getResourceAsStream("/fonts/SFMonoRegular.otf"), 12);
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
+
+            stage.setTitle("Nyx");
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setMinHeight(220);

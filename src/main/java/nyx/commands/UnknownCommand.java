@@ -21,6 +21,6 @@ public class UnknownCommand extends Command {
      * @throws NyxException Always thrown to indicate an unrecognized command.
      */
     public String execute(TaskList taskList, Storage storage, Ui ui) throws NyxException {
-        throw new UnknownCommandException("Unrecognized command");
+        throw new UnknownCommandException("Unrecognized command.\nUse `help` to see the list of commands.");
     }
 }

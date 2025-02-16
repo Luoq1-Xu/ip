@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public abstract class Task {
     private final String name;
-    private boolean completed = false;
+    private boolean isCompleted = false;
     private final ArrayList<String> tags;
 
     /**
@@ -25,14 +25,14 @@ public abstract class Task {
      * Marks the task as complete.
      */
     public void markAsComplete() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     /**
      * Marks the task as incomplete.
      */
     public void markAsIncomplete() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class Task {
      * @return 1 if the task is completed, 0 otherwise.
      */
     public int isCompleted() {
-        return completed ? 1 : 0;
+        return isCompleted ? 1 : 0;
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class Task {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        if (this.completed) {
+        if (this.isCompleted) {
             sb.append("[X]");
         } else {
             sb.append("[ ]");
@@ -98,8 +98,8 @@ public abstract class Task {
         sb.append(this.name);
         sb.append(" ");
 
-        for (int i = 0; i < this.tags.size(); i++) {
-            String tag = "#" + this.tags.get(i);
+        for (String s : this.tags) {
+            String tag = "#" + s + " ";
             sb.append(tag);
         }
 

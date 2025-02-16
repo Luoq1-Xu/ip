@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -25,7 +24,7 @@ public class DialogBox extends HBox {
 
     private DialogBox(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/RetroDialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -33,7 +32,6 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
         dialog.setText(text);
-        dialog.setFont(Font.font("Lucida Sans", 16));
         displayPicture.setImage(img);
     }
 
