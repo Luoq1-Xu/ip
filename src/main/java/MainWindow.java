@@ -39,7 +39,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        sendButton.setFont(Font.font("Lucida Sans"));
         userInput.setFont(Font.font("Lucida Sans", 20));
     }
 

@@ -50,7 +50,7 @@ public class Nyx {
     }
 
     /**
-     * The main method to start the Nyx chatbot application.
+     * Starts the Nyx chatbot application.
      *
      * @param args Command-line arguments (not used).
      */
