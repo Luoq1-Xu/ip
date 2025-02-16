@@ -98,7 +98,7 @@ public class Storage {
      * @return a Task instance, or null if parsing fails.
      */
     public static Task parseTask(String line) {
-        String[] tokens = line.split(" \\| ");
+        String[] tokens = line.split(" \\| ", -1);
         if (tokens.length < 4) {
             return null;
         }

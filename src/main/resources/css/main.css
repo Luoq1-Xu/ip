@@ -1,10 +1,10 @@
 .root {
-    main-color: rgb(240, 240, 240);       /* Create a looked-up color called "main-color" within root. */
+    main-color: #171717;       /* Create a looked-up color called "main-color" within root. */
     -fx-background-color: main-color;
 }
 
 .text-field {
-    -fx-background-color: #171717;
+    -fx-background-color: #1d1e1e;
     -fx-text-fill: #00ff00;;
     -fx-border-radius: 0 0 0 0;
     -fx-background-radius: 0 0 0 0;
@@ -37,7 +37,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
+    -fx-background-color: #00ff00;
     -fx-background-radius: 1em;
 }
 

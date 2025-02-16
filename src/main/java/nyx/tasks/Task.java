@@ -99,7 +99,7 @@ public abstract class Task {
         sb.append(" ");
 
         for (String s : this.tags) {
-            String tag = "#" + s;
+            String tag = "#" + s + " ";
             sb.append(tag);
         }
 

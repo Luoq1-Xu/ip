@@ -59,7 +59,7 @@ public class Nyx {
     }
 
     /**
-     * The main method to start the Nyx chatbot application.
+     * Returns a response to an input given by the user.
      *
      * @param input The input entered by the user.
      * @return      The output or error generated after executing the command.

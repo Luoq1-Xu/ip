@@ -6,6 +6,7 @@ import nyx.commands.DeadlineCommand;
 import nyx.commands.DeleteCommand;
 import nyx.commands.EventCommand;
 import nyx.commands.FindCommand;
+import nyx.commands.HelpCommand;
 import nyx.commands.ListCommand;
 import nyx.commands.MarkCommand;
 import nyx.commands.TagCommand;
@@ -25,6 +26,7 @@ public class Parser {
      * @param input The user input string.
      * @return The command corresponding to the user input.
      */
+    @SuppressWarnings("checkstyle:Indentation") // Ignore lambda-style case lines
     public static Command parse(String input) {
         // Get command as first word of the input
         String trimmedInput = input.trim();
@@ -42,6 +44,7 @@ public class Parser {
             case "delete" -> new DeleteCommand(input);
             case "find" -> new FindCommand(input);
             case "tag" -> new TagCommand(input);
+            case "help" -> new HelpCommand();
             default -> new UnknownCommand();
         };
     }
