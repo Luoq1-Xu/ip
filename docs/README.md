@@ -46,7 +46,7 @@ Format: `event [event name] -start [time] -end [time]`
 > The time fields must be a date in YYYY-MM-DD format.
 > For example: 2025-11-02
 
-Example: `deadline quiz -by 2025-11-02`
+Example: `event quiz -start 2025-01-15 -end 2025-01-16`
 
 ```
 Task created: [D][ ] quiz Deadline: 2025-11-02
