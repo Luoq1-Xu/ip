@@ -159,3 +159,8 @@ Format: `bye`
 ```
 Goodbye!
 ```
+
+## Acknowledgements
+Frieren chibi sprites borrowed from [Guardian Tales X Frieren collab](https://www.facebook.com/permalink.php/?story_fbid=122175340070092928&id=61552787855398).
+GitHub Copilot used to refine and tidy up most JavaDoc comments.
+Occasional GitHub Copilot usage to autocomplete simple logic in some methods.
