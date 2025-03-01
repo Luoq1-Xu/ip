@@ -49,7 +49,7 @@ Format: `event [event name] -start [time] -end [time]`
 Example: `event quiz -start 2025-01-15 -end 2025-01-16`
 
 ```
-Task created: [D][ ] quiz Deadline: 2025-11-02
+Task created: [E][ ] quiz  Start: Jan 15 2025 End: Jan 16 2025
 ```
 
 ## Listing all tasks: `list`
