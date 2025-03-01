@@ -27,6 +27,9 @@ public class MainWindow extends AnchorPane {
 
     private Nyx nyx;
 
+
+    // Frieren chibi sprites borrowed from Guardian Tales X Frieren collab.
+    // https://www.facebook.com/permalink.php/?story_fbid=122175340070092928&id=61552787855398
     private final Image frierenImage = new Image(
             Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Frieren.png")));
     private final Image fernImage = new Image(
